@@ -1,5 +1,0 @@
-#Buscar dados da memória da JVM
-curl -k -s -H "Authorization: Bearer $(oc whoami -t)" https://ocpmaster1.tjro.net:8443/api/v1/namespaces/pje-prod/pods/https:sg-consulta-48-cq62z:8778/proxy/jolokia/read/java.lang:type\=Memory/HeapMemoryUsage | python -m json.tool
-
-#Forçar um garbage collection
-curl -k -s -H "Authorization: Bearer $(oc whoami -t)" https://ocpmaster1.tjro.net:8443/api/v1/namespaces/pje-prod/pods/https:pg-70-8vft8:8778/proxy/jolokia/exec/java.lang:type\=Memory/gc

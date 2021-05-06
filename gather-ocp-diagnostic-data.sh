@@ -3,7 +3,7 @@
 #   PDO Name is required. To identify the name of the pod, please run:
 #      oc get pod
 # This will return a list of all of the running pods. 
-
+set -x
 if [ -z "$1" ]
   then
    echo 
@@ -40,7 +40,9 @@ if [ "$1" == "--help" ]
     exit
 fi
 
-PODS=`oc get pods -l app=$1 -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}'`
+#PODS=`oc get pods -l app=$1 -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}'`
+PODS=`oc get pods -l deploymentConfig=$1 |  awk '{print $1}' | grep $1`;
+
 for i in $PODS; do
 POD=$i
  
